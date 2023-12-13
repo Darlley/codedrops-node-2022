@@ -1,0 +1,6 @@
+# Ignorar arquivos e diretórios que não são necessários para a aplicação nodejs
+node_modules
+npm-debug.log
+.DS_Store
+.git
+.gitignore
