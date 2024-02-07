@@ -2,8 +2,12 @@ const express = require('express');
 const {randomUUID} = require('crypto');
 const fs = require('fs')
 
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
+
 const app = express();
 app.use(express.json());
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 let products = [];
 
@@ -14,6 +18,12 @@ fs.readFile('products.json', "utf-8", (err, data) => {
     products = JSON.parse(data)
   }
 })
+
+// app.get('/', (response) => {
+//   return response.json({
+//     message: "OK"
+//   })
+// })
 
 app.post('/products', (request,response) => {
   const {name,price} = request.body;
@@ -90,4 +100,4 @@ function createProductsFile(data, message){
   })
 }
 
-app.listen(4002, () => console.log('Server is running at http://localhost:4002'));
+app.listen(3000, () => console.log('Server is running at http://localhost:3000'));

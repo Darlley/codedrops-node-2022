@@ -1,1 +1,12 @@
-[{"id":"d58f780f-b744-45a9-a68e-b08b64a735a6","name":"Caneta Azul","price":1.5}]
+[
+  {
+    "id": "d58f780f-b744-45a9-a68e-b08b64a735a6",
+    "name": "Caneta Azul",
+    "price": 1.5
+  },
+  {
+    "id": "b19574a3-b75f-4823-8c2a-53b593b69380",
+    "name": "Caneta 2",
+    "price": 2.5
+  }
+]

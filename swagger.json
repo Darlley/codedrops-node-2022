@@ -1,0 +1,184 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "Documentação da API",
+        "description": "Esta é uma api em Node/Express feita pela Rocketseat. Ela faz um CRUD de produtos em um arquivo json.",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "name": "Darlley Dev",
+            "url": "https://darlley.dev",
+            "email": "apiteam@swagger.io"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "externalDocs": {
+        "description": "Saiba mais sobre o Growp",
+        "url": "https://knowledge.growp.app/"
+    },
+    "servers": [
+        {
+            "url": "/"
+        }
+    ],
+    "paths": {
+        "/products": {
+            "get": {
+                "tags": [
+                    "products"
+                ],
+                "summary": "All products",
+                "description": "List all products in one page",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Product"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "204": {
+                        "description": "Empty Products"
+                    }
+                },
+                "security": [
+                    {
+                        "petstore_auth": [
+                            "write:pets",
+                            "read:pets"
+                        ]
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "products"
+                ],
+                "summary": "Create a new product",
+                
+                "description": "Create a new product",
+                "requestBody": {
+                    "description": "Create a new pet in the store",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Product"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Product"
+                                }
+                            }
+                        }
+                    },
+                    "405": {
+                        "description": "Invalid input"
+                    }
+                },
+                "security": [
+                    {
+                        "petstore_auth": [
+                            "write:pets",
+                            "read:pets"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/products/{productId}": {
+            "get": {
+                "tags": [
+                    "products"
+                ],
+                "summary": "Get Product By ID",
+                "description": "List one Product in one page",
+                "parameters": [
+                    {
+                        "name": "productId",
+                        "description": "ID of product",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "$ref": "#/components/schemas/Product"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Product not found"
+                    }
+                },
+                "security": [
+                    {
+                        "petstore_auth": [
+                            "write:pets",
+                            "read:pets"
+                        ]
+                    }
+                ]
+            },
+            "put": {},
+            "delete": {}
+        }
+    },
+    "tags": [
+        {
+            "name": "products",
+            "description": "CRUD de Produtos com todos os métodos"
+        }
+    ],
+    "components": {
+        "schemas": {
+            "Product": {
+                "required": [
+                    "name"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "example": "d58f780f-b744-45a9-a68e-b08b64a735a6",
+                        "readOnly": true
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Caneta"
+                    },
+                    "price": {
+                        "type": "number",
+                        "example": 1.5
+                    }
+                }
+            }
+        }
+    }
+}
